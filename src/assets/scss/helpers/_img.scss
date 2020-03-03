@@ -1,0 +1,21 @@
+// img
+
+.bg-cover-b {
+    background-size: cover;
+    background-position: bottom;
+}
+
+.bg-cover-c {
+    background-size: cover;
+    background-position: center center;
+}
+
+.bg-cover-t {
+    background-size: cover;
+    background-position: top;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}

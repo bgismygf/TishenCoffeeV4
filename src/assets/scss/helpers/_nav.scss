@@ -1,0 +1,45 @@
+// nav
+
+.nav_item_style {
+    color: #fff !important;
+    transition:all .3s;
+    border-radius: 5px;
+}
+
+.nav_item_style:hover {
+    color: $text-red !important;
+    cursor: pointer;
+
+.nav_badge {
+    color: $text-red;
+    background: #fff;
+    }
+}
+
+.nav_item_style.active {
+    color: $text-red !important;
+
+.nav_badge {
+    color:  $text-red;
+    background: #fff;
+    }
+}
+
+.nav_favorite_block_xs-md {
+@media screen and (max-width: 990px) {
+    width: 25%;
+    margin: 0 auto;
+    }
+}
+
+.nav_badge {
+    position:absolute;
+    bottom: 13px;
+    right:-11px;
+    transition:all .3s;
+}
+
+.nav_badge_block {
+    display:inline-block;
+    position: relative;
+}

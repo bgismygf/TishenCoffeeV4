@@ -1,0 +1,27 @@
+// btn
+
+.btn-main {
+    color: #fff;
+    background: $bg-main;
+    border-color: $bg-main;
+}
+
+.btn-main:hover,
+.btn-main.active{
+color: $text-red;
+}
+
+.btn-main.disabled{
+opacity: 0.30;
+}
+
+.btn-outline-main {
+border-color: $bg-main;
+background: transparent;
+color:$bg-main;
+}
+
+.btn-outline-main:hover {
+background: $bg-main;
+color:#fff;
+}

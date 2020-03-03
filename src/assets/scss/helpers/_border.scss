@@ -1,0 +1,27 @@
+// border
+
+.border-t-radius-5 {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.border-b-radius-5 {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.border-2px {
+    border: 2px solid;
+}
+
+.border-main {
+    border-color: $bg-main !important;
+}
+
+.border-radius-0 {
+    border-radius: 0px;
+}

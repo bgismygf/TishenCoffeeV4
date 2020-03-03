@@ -1,0 +1,26 @@
+// color
+
+// $bg-main:       #0D0F13;
+$bg-main:       #000;
+
+$text-red:      #dc3545;
+
+// $bg-main-dark:  rgb(7, 8, 10);
+
+$bg-match:      #131B25;
+
+.bg-main {
+    background: $bg-main;
+}
+
+.bg-match {
+    background: $bg-match;
+}
+
+.text-main {
+    color: $bg-main;
+}
+
+a.text-main:hover, a.text-main:focus {
+    color: $bg-main;
+}
