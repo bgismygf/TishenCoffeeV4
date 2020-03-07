@@ -59,27 +59,17 @@ https://bgismygf.github.io/TishenCoffeeV4/#/
 
 ## 使用技術
 
-- Vue CLI 4
-- Vue Router
-- JavaScript (ES6)
-- ESLint (Airbnb)
-- API
-- Bootstrap 4
-- RWD
-- SCSS
-- jQuery
-- Webpack
-
-## 技術
-* Vue Cli 2
-* Vuex
+* Vue CLI 4
 * Vue Router
-* Vue Component
-* API操作(前後端分離)
-* Webpack 打包
-* ESlint
-* Bootstrap4 + scss手刻
+* Vuex
+* JavaScript (ES6)
+* ESLint (Airbnb)
+* API
 * localStorage
+* Bootstrap 4 + SCSS 手刻
+* RWD
+* jQuery
+* Webpack
 
 ## 使用套件
 
