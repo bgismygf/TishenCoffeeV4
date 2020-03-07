@@ -90,6 +90,6 @@ https://bgismygf.github.io/TishenCoffeeV4/#/
 
 ## 關於作者
 
-* 稱呼：zac
+* 稱呼：Zac
 * 信箱：[ggyy06059909@gmail.com](mailto:ggyy06059909@gmail.com)
 * Demo: https://bgismygf.github.io/TishenCoffeeV4/#/
