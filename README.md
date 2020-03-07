@@ -76,31 +76,20 @@ https://bgismygf.github.io/TishenCoffeeV4/#/
 * [vue-axios](https://github.com/imcvampire/vue-axios)
 * [VeeValidate (驗證表單)](https://github.com/baianat/vee-validate)
 * [vue-loading-overlay](https://github.com/ankurk91/vue-loading-overlay)
-* [vue-awesome-swiper (輪播)](https://github.com/surmon-china/vue-awesome-swiper)
 * [Bootstrap 4](https://bootstrap.hexschool.com/)
-* [Google Font](https://fonts.google.com/)
 * [Font Awesome ](https://fontawesome.com/)
 
-## :art: Sources | 圖片來源
+## 圖片來源
 
-- [Google](https://www.google.com/)
-- [MapleStory.Wiki](https://maplestory.wiki/)
+* [RANDOM USER](https://randomuser.me/)
+* [Unsplash](https://unsplash.com/)
 
 ## API
 
 [六角學院 vue-course-api](https://github.com/hexschool/vue-course-api-wiki/wiki)
 
-## :hamburger: About Author | 關於作者
+## 關於作者
 
-- 暱稱：海豹人
-- 描述：你不需要很厲害才能開始，但你需要開始才會很厲害
-- 狀態：目前大四
-- 專業：前端開發與資訊管理
-- 信箱：[ff1998725@gmail.com](mailto:ff1998725@gmail.com)
-
-## :maple_leaf: About Shop | 關於楓之谷電商
-
-- 網站名稱：MapleStoryShop
-- 網站描述：楓之谷電子商務網站
-- 網站網址：<https://sealman234.github.io/MapleStoryShopV4/>
-- 網站狀態：Vue CLI 4 版製作完成，Vue CLI 4 + Vuex 版正在更新中 ...
+* 稱呼：zac
+* 信箱：[ggyy06059909@gmail.com](mailto:ggyy06059909@gmail.com)
+* Demo: https://bgismygf.github.io/TishenCoffeeV4/#/
