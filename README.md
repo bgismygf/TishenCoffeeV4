@@ -86,7 +86,7 @@ https://bgismygf.github.io/TishenCoffeeV4/#/
 
 ## API
 
-[六角學院 vue-course-api](https://github.com/hexschool/vue-course-api-wiki/wiki)
+* [六角學院 vue-course-api](https://github.com/hexschool/vue-course-api-wiki/wiki)
 
 ## 關於作者
 
