@@ -2,6 +2,28 @@
 
 ![首頁](https://i.postimg.cc/zv7qzXvF/1.jpg)
 
+## Demo
+
+https://bgismygf.github.io/TishenCoffeeV4/#/
+
+## 簡介
+
+#### 前台：
+* 評論輪播
+* 管理員登入
+* 購物車功能
+* 我的最愛功能 (使用 localStorage)
+* 商品列表
+* 單一商品資訊
+* 訂單結帳
+* 優惠卷套用
+* 結帳表單驗證
+
+#### 後台：
+* 商品管理
+* 客戶訂單管理
+* 優惠卷管理
+
 ### 評論輪播
 
 ![評論輪播](https://i.postimg.cc/qv2RC0Ny/9-a.jpg)
@@ -29,7 +51,7 @@
 
 ### 訂單結帳
 
-![訂單結帳](https://i.postimg.cc/bY2HFDWh/4.jpg)
+![訂單結帳](https://i.postimg.cc/fL23zNLX/4.jpg)
 
 ### 後台
 
