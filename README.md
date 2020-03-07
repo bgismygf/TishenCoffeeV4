@@ -1,24 +1,36 @@
 # TishenCoffee 早餐外送美食網站
 
-## Project setup
-```
-npm install
-```
+![首頁](https://i.postimg.cc/zv7qzXvF/1.jpg)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 評論輪播
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![評論輪播](https://i.postimg.cc/qv2RC0Ny/9-a.jpg)
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 商品列表
+
+![商品列表](https://i.postimg.cc/8kbxcYkc/2.jpg)
+
+### 單一商品資訊
+
+![單一商品資訊](https://i.postimg.cc/nrVRqHVz/3-product-more.jpg)
+
+### 購物車
+
+![購物車](https://i.postimg.cc/KvHqgS6G/7-cart.jpg)
+
+### 行動版購物車
+
+![行動版購物車](https://i.postimg.cc/rstdn4wY/8-fl.jpg)
+
+### 我的最愛
+
+![我的最愛](https://i.postimg.cc/rF3jwG4z/6-f.jpg)
+
+### 訂單結帳
+
+![訂單結帳](https://i.postimg.cc/bY2HFDWh/4.jpg)
+
+### 後台
+
+![後台](https://i.postimg.cc/HLhX6dtn/5.jpg)
