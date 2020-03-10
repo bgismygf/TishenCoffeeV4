@@ -230,9 +230,6 @@
                                       <h5 class="mt-0">Megu Fujiura</h5>
                                       <p class="section3_comment_text_overflow">
                                           減去買早餐的時間直接省２小時！
-                                      </p> <h5 class="mt-0">Megu Fujiura</h5>
-                                      <p class="section3_comment_text_overflow">
-                                          減去買早餐的時間直接省２小時！
                                       </p>
                                     </div>
                                   </div>

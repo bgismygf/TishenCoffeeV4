@@ -190,82 +190,53 @@
 <script>
 export default {
   data() {
-    return {
-      cart: {},
-      favoriteData: [],
-      cartLength: 0,
-    };
+    return {};
   },
   methods: {
     getCart() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart`;
-      vm.$http.get(api).then((response) => {
-        vm.cart = response.data.data;
-        vm.cartLength = vm.cart.carts.length;
-        vm.$bus.$emit('toFloatCart');
-      });
+      this.$store.dispatch('getCart');
     },
     removeCartItem(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart/${id}`;
-      vm.$http.delete(api).then(() => {
-        vm.getCart();
-        vm.$bus.$emit('removeCartItem');
-        vm.$bus.$emit('message:push', '已從購物車中刪除', 'danger');
-      });
+      this.$store.dispatch('removeCartItem', id);
     },
-    getfavoriteData() {
-      this.favoriteData = JSON.parse(localStorage.getItem('favoriteData')) || [];
+    getFavoriteData() {
+      this.$store.dispatch('getFavoriteData');
     },
     removeFavorite(item) {
-      const vm = this;
-      const num = vm.favoriteData.findIndex((el) => {
-        const result = el.id === item.id;
-        return result;
-      });
-      vm.favoriteData.splice(num, 1);
-      localStorage.setItem('favoriteData', JSON.stringify(vm.favoriteData));
-      vm.getfavoriteData();
-      vm.$bus.$emit('favoriteData');
-      vm.$bus.$emit('message:push', '已從我的最愛中刪除', 'danger');
+      this.$store.dispatch('removeFavorite', item);
     },
     removeAllFavorite() {
-      const vm = this;
-      vm.favoriteData = [];
-      localStorage.setItem('favoriteData', JSON.stringify(vm.favoriteData));
-      vm.$bus.$emit('removeAllFavorite', vm.favoriteData);
-      vm.$bus.$emit('message:push', '全部已刪除', 'danger');
+      this.$store.dispatch('removeAllFavorite');
     },
     moreContent(productId, isEnabled) {
       if (isEnabled === 0) {
         return;
       }
       if (this.$route.name === 'MoreContent') {
-        this.$bus.$emit('moreContentSwitch', productId);
+        this.$store.dispatch('getProductMoreContent', productId);
       } else {
         this.$router.push(`/product_list/${productId}`);
       }
     },
     addtoCart(id, qty = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart`;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      vm.$http.post(api, { data: cart }).then(() => {
-        vm.$bus.$emit('getCart');
-        vm.$bus.$emit('message:push', '已加入購物車', 'success');
-      });
+      this.$store.dispatch('addtoCart', { id, qty });
+    },
+  },
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
+    cartLength() {
+      return this.$store.state.cartLength;
+    },
+    favoriteData() {
+      return this.$store.state.favoriteData;
     },
   },
   created() {
     const vm = this;
     vm.getCart();
-    vm.getfavoriteData();
-    vm.$bus.$on('getCart', vm.getCart);
-    vm.$bus.$on('favoriteData', vm.getfavoriteData);
+    vm.getFavoriteData();
   },
 };
 </script>

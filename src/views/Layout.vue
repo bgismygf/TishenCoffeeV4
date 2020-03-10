@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <Alert></Alert>
     <Navbar></Navbar>
     <router-view></router-view>
@@ -17,6 +18,11 @@ export default {
     Navbar,
     Footer,
     Alert,
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
   },
 };
 </script>

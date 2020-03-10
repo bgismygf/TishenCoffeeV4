@@ -1,7 +1,6 @@
 <template>
   <div>
     <FloatCart class="d-lg-none"></FloatCart>
-    <loading :active.sync="isLoading"></loading>
       <div class="container mt-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb text-main bg-transparent
@@ -88,13 +87,8 @@ export default {
   },
   data() {
     return {
-      select: '全部菜單',
       isLoading: false,
       favoriteLength: '',
-      favoriteData: [],
-      products: [],
-      pagination: {},
-      cart: {},
       categories: [
         { title: '全部菜單' },
         { title: '熱食餐點' },
@@ -106,32 +100,16 @@ export default {
   },
   methods: {
     getItem(title) {
-      this.select = title;
+      this.$store.dispatch('getItem', title);
       if (this.$route.query.category) {
         this.$router.push('/product_list');
       }
     },
     getProducts() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/products/all`;
-      vm.isLoading = true;
-      vm.$http.get(api).then((response) => {
-        vm.isLoading = false;
-        vm.products = response.data.products;
-        vm.pagination = response.data.pagination;
-      });
+      this.$store.dispatch('getProducts');
     },
     addtoCart(id, qty = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart`;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      vm.$http.post(api, { data: cart }).then(() => {
-        vm.$bus.$emit('getCart');
-        vm.$bus.$emit('message:push', '已加入購物車', 'success');
-      });
+      this.$store.dispatch('addtoCart', { id, qty });
     },
     moreContent(productId, isEnabled) {
       if (isEnabled === 0) {
@@ -140,19 +118,10 @@ export default {
       this.$router.push(`/product_list/${productId}`);
     },
     getFavoriteData() {
-      this.favoriteData = JSON.parse(localStorage.getItem('favoriteData')) || [];
+      this.$store.dispatch('getFavoriteData');
     },
     addFavorite(item) {
-      const vm = this;
-      const favoriteItem = {
-        id: item.id,
-        title: item.title,
-        is_enabled: item.is_enabled,
-      };
-      vm.favoriteData.push(favoriteItem);
-      localStorage.setItem('favoriteData', JSON.stringify(vm.favoriteData));
-      vm.$bus.$emit('favoriteData');
-      vm.$bus.$emit('message:push', '已加入我的最愛', 'success');
+      this.$store.dispatch('addFavorite', item);
     },
     getFilteredFavorite(item) {
       return this.favoriteData.some((el) => {
@@ -161,43 +130,29 @@ export default {
       });
     },
     removeFavorite(item) {
-      const vm = this;
-      const num = vm.favoriteData.findIndex((el) => {
-        const result = el.id === item.id;
-        return result;
-      });
-      vm.favoriteData.splice(num, 1);
-      localStorage.setItem('favoriteData', JSON.stringify(vm.favoriteData));
-      vm.$bus.$emit('favoriteData');
-      vm.$bus.$emit('message:push', '已從我的最愛中刪除', 'danger');
+      this.$store.dispatch('removeFavorite', item);
     },
-    getCategory() {
-      if (this.$route.query.category) {
-        this.select = this.$route.query.category;
-      }
-    },
-  },
-  mounted() {
-    const vm = this;
-    vm.$bus.$on('favoriteData', vm.getFavoriteData);
-    vm.$bus.$on('removeAllFavorite', (data) => {
-      vm.favoriteData = data;
-      localStorage.setItem('favoriteData', JSON.stringify(vm.favoriteData));
-    });
+    // getCategory() {
+    //   if (this.$route.query.category) {
+    //     this.select = this.$route.query.category;
+    //   }
+    // },
   },
   computed: {
     filteredData() {
-      const vm = this;
-      if (vm.select === '全部菜單') {
-        return vm.products;
-      }
-      return vm.products.filter((item) => item.category === vm.select);
+      return this.$store.state.products;
+    },
+    select() {
+      return this.$store.state.select;
+    },
+    favoriteData() {
+      return this.$store.state.favoriteData;
     },
   },
   created() {
     this.getProducts();
     this.getFavoriteData();
-    this.getCategory();
+    // this.getCategory();
   },
 };
 </script>

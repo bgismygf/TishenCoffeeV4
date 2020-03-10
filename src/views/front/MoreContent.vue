@@ -1,7 +1,6 @@
 <template>
   <div>
     <FloatCart class="d-lg-none"></FloatCart>
-    <loading :active.sync="isLoading"></loading>
     <div class="container mt-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb text-main bg-transparent
@@ -105,21 +104,13 @@ export default {
   },
   data() {
     return {
-      productId: '',
-      product: {},
       qty: 0,
-      isLoading: false,
+      productId: '',
     };
   },
   methods: {
-    getProductMoreContent() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/product/${vm.productId}`;
-      vm.isLoading = true;
-      vm.$http.get(api).then((response) => {
-        vm.isLoading = false;
-        vm.product = response.data.product;
-      });
+    getProductMoreContent(productId) {
+      this.$store.dispatch('getProductMoreContent', productId);
     },
     addtoCart(id, qty) {
       const vm = this;
@@ -145,9 +136,14 @@ export default {
       vm.getProductMoreContent();
     });
   },
+  computed: {
+    product() {
+      return this.$store.state.product;
+    },
+  },
   created() {
     this.productId = this.$route.params.productId;
-    this.getProductMoreContent();
+    this.getProductMoreContent(this.productId);
   },
 };
 </script>
