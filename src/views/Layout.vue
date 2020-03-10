@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <Alert></Alert>
-        <Navbar></Navbar>
-        <router-view></router-view>
-        <Footer></Footer>
-    </div>
+  <div>
+    <Alert></Alert>
+    <Navbar></Navbar>
+    <router-view></router-view>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Alert from '../components/AlertMessage';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
+import Alert from '../components/AlertMessage.vue';
 
 export default {
   components: {

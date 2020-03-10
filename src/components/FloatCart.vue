@@ -1,57 +1,57 @@
 <template>
-    <div>
-        <div class="jq-floatcart floatcart-block position-fixed bg-main">
-            <a class="my-1 my-lg-0" data-toggle="modal" data-target="#floatCartModal">
-            <div class="nav_badge_block">
-              <i class="text-white fas fa-shopping-cart fa-lg"></i>
-              <span class="badge badge-pill badge-danger position-absolute nav_badge"
-                v-if="cartLength !== 0">
-              {{cartLength}}
-              </span>
-            </div>
-          </a>
+  <div>
+    <div class="jq-floatcart floatcart-block position-fixed bg-main">
+      <a class="my-1 my-lg-0" data-toggle="modal" data-target="#floatCartModal">
+        <div class="nav_badge_block">
+          <i class="text-white fas fa-shopping-cart fa-lg"></i>
+          <span class="badge badge-pill badge-danger position-absolute nav_badge"
+            v-if="cartLength !== 0">
+            {{cartLength}}
+          </span>
         </div>
+      </a>
+    </div>
 
-<div class="modal fade" id="floatCartModal" tabindex="-1" role="dialog"
-  aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header"
-        :class="{'border-bottom-0': cartLength !== 0}">
-        <h5 class="modal-title" id="exampleModalLabel">購物車清單</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" :class="{'py-0': cartLength !== 0}">
-        <h5 class="text-center text-danger" v-if="cartLength === 0">
-          購物車是空的！
-          </h5>
-        <table class="table" v-else>
-          <tr v-for="item in cart.carts" :key="item.id">
-            <td>
-              <a class="text-danger" href="#"
-                @click.prevent="removeCartItem(item.id)">
+    <div class="modal fade" id="floatCartModal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header"
+            :class="{'border-bottom-0': cartLength !== 0}">
+            <h5 class="modal-title" id="exampleModalLabel">購物車清單</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" :class="{'py-0': cartLength !== 0}">
+            <h5 class="text-center text-danger" v-if="cartLength === 0">
+              購物車是空的！
+            </h5>
+            <table class="table" v-else>
+              <tr v-for="item in cart.carts" :key="item.id">
+                <td>
+                  <a class="text-danger" href="#"
+                    @click.prevent="removeCartItem(item.id)">
                     <i class="fas fa-trash-alt"></i>
-              </a>
-            </td>
-            <td>{{ item.product.title }}</td>
-            <td>{{ item.qty }} {{ item.product.unit }}</td>
-            <td>${{ item.total }}</td>
-          </tr>
-        </table>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-main" data-dismiss="modal">繼續逛逛</button>
-        <router-link to="/create_order" data-dismiss="modal" class="btn btn-danger"
-          v-if="cartLength !== 0">
-          結帳去
-        </router-link>
+                  </a>
+                </td>
+                <td>{{ item.product.title }}</td>
+                <td>{{ item.qty }} {{ item.product.unit }}</td>
+                <td>${{ item.total }}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-main" data-dismiss="modal">繼續逛逛</button>
+            <router-link to="/create_order" data-dismiss="modal" class="btn btn-danger"
+              v-if="cartLength !== 0">
+              結帳去
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-    </div>
 </template>
 
 <script>

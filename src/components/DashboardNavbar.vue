@@ -3,15 +3,15 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-dark bg-main font-w-500 fixed-top">
         <router-link class="pt-1 pb-2 pr-3" href="#" to="/">
-            <img src="@/assets/img/logo.svg" title="Tíshén coffee" width="165" height="21" alt="">
+          <img src="@/assets/img/logo.svg" title="Tíshén coffee" width="165" height="21" alt="">
         </router-link>
         <button class="navbar-toggler" type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,12 +39,16 @@
             </li>
             <li class="nav-item mr-lg-3">
               <router-link class="nav-link nav_item_style my-1 my-lg-0"
-                          to="/" :class="{ 'active' : $route.name === '/' }">首頁</router-link>
+                to="/" :class="{ 'active' : $route.name === '/' }">
+                首頁
+              </router-link>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link nav_item_style my-1 my-lg-0"
                 :class="{ 'active' : $route.name === 'Products' }"
-                @click.prevent="signout">登出</a>
+                @click.prevent="signout">
+                登出
+              </a>
             </li>
           </ul>
         </div>

@@ -13,9 +13,9 @@
   </div>
 </template>
 <script>
-import DashboardNavbar from '../../components/DashboardNavbar';
-import Sidebar from '../../components/Sidebar';
-import Alert from '../../components/AlertMessage';
+import DashboardNavbar from '../../components/DashboardNavbar.vue';
+import Sidebar from '../../components/Sidebar.vue';
+import Alert from '../../components/AlertMessage.vue';
 
 export default {
   components: {
@@ -40,4 +40,3 @@ export default {
   }
 }
 </style>
-
