@@ -132,11 +132,6 @@ export default {
     removeFavorite(item) {
       this.$store.dispatch('removeFavorite', item);
     },
-    // getCategory() {
-    //   if (this.$route.query.category) {
-    //     this.select = this.$route.query.category;
-    //   }
-    // },
   },
   computed: {
     filteredData() {
@@ -152,7 +147,6 @@ export default {
   created() {
     this.getProducts();
     this.getFavoriteData();
-    // this.getCategory();
   },
 };
 </script>

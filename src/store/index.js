@@ -103,6 +103,9 @@ export default new Vuex.Store({
         context.commit('GETPRODUCTMORECONTENT', response.data.product);
       });
     },
+    selectSwitch(context, category) {
+      context.commit('SELECTSWITCH', category);
+    },
   },
   mutations: {
     LOADING(state, status) {
@@ -158,6 +161,9 @@ export default new Vuex.Store({
     },
     GETPRODUCTMORECONTENT(state, payload) {
       state.product = payload;
+    },
+    SELECTSWITCH(state, payload) {
+      state.select = payload;
     },
   },
 });

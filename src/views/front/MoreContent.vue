@@ -12,8 +12,9 @@
               <router-link to="/product_list" class="text-main">菜單</router-link>
             </li>
           <li class="breadcrumb-item">
-              <router-link :to="{path: '/product_list', query: {category: product.category}}"
-                class="text-main">{{product.category}}</router-link>
+              <a href="#" class="text-main" @click.prevent="selectSwitch(product.category)">
+                {{product.category}}
+              </a>
             </li>
           <li class="breadcrumb-item" aria-current="page">{{product.title}}</li>
           </ol>
@@ -113,28 +114,16 @@ export default {
       this.$store.dispatch('getProductMoreContent', productId);
     },
     addtoCart(id, qty) {
-      const vm = this;
       if (qty === 0) {
-        vm.$bus.$emit('message:push', '請選擇數量', 'danger');
+        this.$store.dispatch('updateMessage', { message: '請選擇數量', status: 'danger' });
         return;
       }
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart`;
-      vm.$http.post(api, { data: cart }).then(() => {
-        vm.$bus.$emit('getCart');
-        vm.$bus.$emit('message:push', '已加入購物車', 'success');
-      });
+      this.$store.dispatch('addtoCart', { id, qty });
     },
-  },
-  mounted() {
-    const vm = this;
-    vm.$bus.$on('moreContentSwitch', (id) => {
-      vm.productId = id;
-      vm.getProductMoreContent();
-    });
+    selectSwitch(category) {
+      this.$store.dispatch('selectSwitch', category);
+      this.$router.push('/product_list');
+    },
   },
   computed: {
     product() {
