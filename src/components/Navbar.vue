@@ -195,8 +195,12 @@ export default {
   },
   methods: {
     selectSwitch() {
-      this.$store.dispatch('selectSwitch', '全部菜單');
-      this.$router.push('/product_list');
+      if (this.$route.name === 'Products') {
+        this.$store.dispatch('selectSwitch', '全部菜單');
+      } else {
+        this.$store.dispatch('selectSwitch', '全部菜單');
+        this.$router.push('/product_list');
+      }
     },
     getCart() {
       this.$store.dispatch('getCart');
@@ -239,9 +243,8 @@ export default {
     },
   },
   created() {
-    const vm = this;
-    vm.getCart();
-    vm.getFavoriteData();
+    this.getCart();
+    this.getFavoriteData();
   },
 };
 </script>

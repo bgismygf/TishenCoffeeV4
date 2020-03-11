@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="container content-h">
       <div class="row justify-content-center text-center mt-5 mb-3">
         <div class="col-lg-3" v-if="!orderData.is_paid">
@@ -305,8 +304,6 @@ export default {
       orderId: '',
       coupon_code: '',
       listSwitchValue: false,
-      isLoading: false,
-      cart: {},
       form: {
         user: {
           email: '',
@@ -321,24 +318,10 @@ export default {
   },
   methods: {
     getCart() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart`;
-      vm.$http.get(api).then((response) => {
-        vm.cart = response.data.data;
-      });
+      this.$store.dispatch('getCart');
     },
     removeCartItem(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart/${id}`;
-      vm.$http.delete(api).then((response) => {
-        if (response.data.success) {
-          vm.getCart();
-          vm.$bus.$emit('getCart');
-          vm.$bus.$emit('message:push', '已刪除', 'danger');
-        } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
-        }
-      });
+      this.$store.dispatch('removeCartItem', id);
     },
     CartAdjNum(item, boolean) {
       const vm = this;
@@ -356,14 +339,13 @@ export default {
       }
       const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart/${item.id}`;
       const addApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart`;
-      vm.isLoading = true;
+      vm.$store.dispatch('updateLoading', true);
       vm.$http.post(addApi, { data: cart });
       vm.$http.delete(deleteApi).then((response) => {
         if (response.data.success) {
           vm.getCart();
-          vm.$bus.$emit('getCart');
-          vm.$bus.$emit('message:push', '數量以更改', 'success');
-          vm.isLoading = false;
+          vm.$store.dispatch('updateMessage', { message: '數量以更改', status: 'success' });
+          vm.$store.dispatch('updateLoading', false);
         }
       });
     },
@@ -381,9 +363,9 @@ export default {
         if (response.data.success) {
           vm.coupon_code = '';
           vm.getCart();
-          vm.$bus.$emit('message:push', response.data.message, 'success');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
         } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -400,16 +382,16 @@ export default {
             vm.getOrder(vm.orderId);
           });
         } else {
-          vm.$bus.$emit('message:push', '請確認資料是否完整', 'danger');
+          vm.$store.dispatch('updateMessage', { message: '請確認資料是否完整', status: 'danger' });
         }
       });
     },
     getOrder(id) {
       const vm = this;
-      vm.isLoading = true;
+      vm.$store.dispatch('updateLoading', true);
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/order/${id}`;
       vm.$http.get(api).then((response) => {
-        vm.isLoading = false;
+        vm.$store.dispatch('updateLoading', false);
         vm.orderData = response.data.order;
       });
     },
@@ -419,13 +401,14 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/pay/${id}`;
       vm.$http.post(api).then(() => {
         vm.getOrder(id);
-        vm.$bus.$emit('getCart');
+        vm.$store.dispatch('getCart');
       });
     },
   },
-  mounted() {
-    const vm = this;
-    vm.$bus.$on('removeCartItem', vm.getCart);
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
   },
   created() {
     this.getCart();

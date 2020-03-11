@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="text-right">
       <button class="btn btn-main mt-0 mt-md-5"
               @click="openModel(true)">
@@ -196,7 +195,6 @@ export default {
       pagination: {},
       tempProduct: {},
       isNew: false,
-      isLoading: false,
       status: {
         fileUploading: false,
       },
@@ -206,14 +204,14 @@ export default {
     getProducts(page = 1) {
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/admin/products?page=${page}`;
-      vm.isLoading = true;
+      vm.$store.dispatch('updateLoading', true);
       vm.$http.get(api).then((response) => {
         if (response.data.success) {
-          vm.isLoading = false;
+          vm.$store.dispatch('updateLoading', false);
           vm.products = response.data.products;
           vm.pagination = response.data.pagination;
         } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -242,7 +240,7 @@ export default {
           $('#productModal').modal('hide');
           vm.getProducts();
         } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -258,9 +256,9 @@ export default {
         if (response.data.success) {
           $('#delProductModal').modal('hide');
           vm.getProducts();
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -280,7 +278,7 @@ export default {
         if (response.data.success) {
           vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
         } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },

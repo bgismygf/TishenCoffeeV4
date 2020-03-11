@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="text-right">
         <button class="btn btn-main mt-0 mt-md-5"
                 @click="openModal(true)">
@@ -137,7 +136,6 @@ export default {
       coupons: {},
       pagination: {},
       tempCoupon: {},
-      isLoading: false,
       isNew: false,
     };
   },
@@ -145,9 +143,9 @@ export default {
     getCouponData(page = 1) {
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/admin/coupons?page=${page}`;
-      vm.isLoading = true;
+      vm.$store.dispatch('updateLoading', true);
       vm.$http.get(api).then((response) => {
-        vm.isLoading = false;
+        vm.$store.dispatch('updateLoading', false);
         vm.coupons = response.data.coupons;
         vm.pagination = response.data.pagination;
       });
@@ -176,9 +174,9 @@ export default {
         if (response.data.success) {
           $('#couponModal').modal('hide');
           vm.getCouponData();
-          vm.$bus.$emit('message:push', response.data.message, 'success');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
         } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -194,9 +192,9 @@ export default {
         if (response.data.success) {
           $('#delCouponModal').modal('hide');
           vm.getCouponData();
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         } else {
-          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },

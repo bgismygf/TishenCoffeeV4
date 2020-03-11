@@ -370,9 +370,9 @@ export default {
       const vm = this;
       vm.$validator.validate().then((valid) => {
         if (!valid) {
-          vm.$bus.$emit('message:push', '請輸入 Email', 'danger');
+          vm.$store.dispatch('updateMessage', { message: '請輸入 Email', status: 'danger' });
         } else {
-          vm.$bus.$emit('message:push', '訂閱成功', 'success');
+          vm.$store.dispatch('updateMessage', { message: '訂閱成功', status: 'success' });
         }
       });
     },

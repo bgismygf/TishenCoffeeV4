@@ -59,32 +59,25 @@ import $ from 'jquery';
 
 export default {
   data() {
-    return {
-      cart: {},
-      cartLength: 0,
-    };
+    return {};
   },
   methods: {
     getCart() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart`;
-      vm.$http.get(api).then((response) => {
-        vm.cart = response.data.data;
-        vm.cartLength = vm.cart.carts.length;
-      });
+      this.$store.dispatch('getCart');
     },
     removeCartItem(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/cart/${id}`;
-      vm.$http.delete(api).then(() => {
-        vm.$bus.$emit('getCart');
-        vm.$bus.$emit('message:push', '已從購物車中刪除', 'danger');
-      });
+      this.$store.dispatch('removeCartItem', id);
+    },
+  },
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
+    cartLength() {
+      return this.$store.state.cartLength;
     },
   },
   mounted() {
-    const vm = this;
-    vm.$bus.$on('toFloatCart', vm.getCart);
     $(window).scroll(() => {
       const scrollPos = $(window).scrollTop();
       if (scrollPos >= 66) {

@@ -12,7 +12,6 @@ import zhTW from 'vee-validate/dist/locale/zh_TW';
 import store from './store';
 import App from './App.vue';
 import router from './router';
-import './bus';
 import currencyFilter from './filters/currency';
 import dateFilter from './filters/date';
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
       <table class="table mt-5">
         <thead>
           <tr>
@@ -70,7 +69,6 @@ export default {
         user: {},
       },
       pagination: {},
-      isLoading: false,
     };
   },
   methods: {
@@ -78,9 +76,9 @@ export default {
       const vm = this;
       let dataOrder = {};
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/admin/orders?page=${page}`;
-      vm.isLoading = true;
+      vm.$store.dispatch('updateLoading', true);
       vm.$http.get(api).then((response) => {
-        vm.isLoading = false;
+        vm.$store.dispatch('updateLoading', false);
         dataOrder = response.data.orders;
         vm.pagination = response.data.pagination;
         vm.orders = JSON.parse(JSON.stringify(dataOrder));
