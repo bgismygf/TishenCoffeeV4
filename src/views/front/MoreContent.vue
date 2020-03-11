@@ -9,7 +9,9 @@
               <router-link to="/" class="text-main">首頁</router-link>
             </li>
           <li class="breadcrumb-item">
-              <router-link to="/product_list" class="text-main">菜單</router-link>
+              <a href="#" class="text-main" @click.prevent="selectSwitch()">
+                菜單
+              </a>
             </li>
           <li class="breadcrumb-item">
               <a href="#" class="text-main" @click.prevent="selectSwitch(product.category)">
@@ -120,7 +122,7 @@ export default {
       }
       this.$store.dispatch('addtoCart', { id, qty });
     },
-    selectSwitch(category) {
+    selectSwitch(category = '全部菜單') {
       this.$store.dispatch('selectSwitch', category);
       this.$router.push('/product_list');
     },

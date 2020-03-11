@@ -104,7 +104,7 @@ export default new Vuex.Store({
       });
     },
     selectSwitch(context, category) {
-      context.commit('SELECTSWITCH', category);
+      context.commit('SELECT_SWITCH', category);
     },
   },
   mutations: {
@@ -162,7 +162,7 @@ export default new Vuex.Store({
     GETPRODUCTMORECONTENT(state, payload) {
       state.product = payload;
     },
-    SELECTSWITCH(state, payload) {
+    SELECT_SWITCH(state, payload) {
       state.select = payload;
     },
   },

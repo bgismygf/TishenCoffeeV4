@@ -68,11 +68,12 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link nav_item_style my-1 my-lg-0" to="/product_list"
+              <a href="#" class="nav-link nav_item_style my-1 my-lg-0"
+                @click.prevent="selectSwitch()"
                 :class="{ 'active' : $route.name === 'Products' }">
                 <span class="d-none d-lg-block">菜單</span>
                 <span class="h4 d-lg-none">菜單</span>
-              </router-link>
+              </a>
             </li>
           </ul>
           <ul class="navbar-nav text-center text-lg-left mt-3 mt-lg-0">
@@ -193,6 +194,10 @@ export default {
     return {};
   },
   methods: {
+    selectSwitch() {
+      this.$store.dispatch('selectSwitch', '全部菜單');
+      this.$router.push('/product_list');
+    },
     getCart() {
       this.$store.dispatch('getCart');
     },
