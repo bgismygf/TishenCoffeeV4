@@ -297,6 +297,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   data() {
     return {
@@ -317,9 +319,6 @@ export default {
     };
   },
   methods: {
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
     removeCartItem(id) {
       this.$store.dispatch('removeCartItem', id);
     },
@@ -404,11 +403,10 @@ export default {
         vm.$store.dispatch('getCart');
       });
     },
+    ...mapActions(['getCart']),
   },
   computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
+    ...mapGetters(['cart']),
   },
   created() {
     this.getCart();

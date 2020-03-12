@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import FloatCart from '../../components/FloatCart.vue';
 
 export default {
@@ -105,9 +106,6 @@ export default {
         this.$router.push('/product_list');
       }
     },
-    getProducts() {
-      this.$store.dispatch('getProducts');
-    },
     addtoCart(id, qty = 1) {
       this.$store.dispatch('addtoCart', { id, qty });
     },
@@ -116,9 +114,6 @@ export default {
         return;
       }
       this.$router.push(`/product_list/${productId}`);
-    },
-    getFavoriteData() {
-      this.$store.dispatch('getFavoriteData');
     },
     addFavorite(item) {
       this.$store.dispatch('addFavorite', item);
@@ -132,17 +127,16 @@ export default {
     removeFavorite(item) {
       this.$store.dispatch('removeFavorite', item);
     },
+    ...mapActions(['getProducts', 'getFavoriteData']),
   },
   computed: {
     filteredData() {
-      return this.$store.state.products;
+      if (this.select === '全部菜單') {
+        return this.products;
+      }
+      return this.products.filter((item) => item.category === this.select);
     },
-    select() {
-      return this.$store.state.select;
-    },
-    favoriteData() {
-      return this.$store.state.favoriteData;
-    },
+    ...mapGetters(['products', 'select', 'favoriteData']),
   },
   created() {
     this.getProducts();

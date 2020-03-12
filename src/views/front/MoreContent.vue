@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import FloatCart from '../../components/FloatCart.vue';
 
 export default {
@@ -128,9 +129,7 @@ export default {
     },
   },
   computed: {
-    product() {
-      return this.$store.state.product;
-    },
+    ...mapGetters(['product']),
   },
   created() {
     this.productId = this.$route.params.productId;

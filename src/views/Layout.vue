@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Navbar from '../components/Navbar.vue';
 import Footer from '../components/Footer.vue';
 import Alert from '../components/AlertMessage.vue';
@@ -20,9 +21,7 @@ export default {
     Alert,
   },
   computed: {
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
+    ...mapGetters(['isLoading']),
   },
 };
 </script>

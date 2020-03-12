@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import DashboardNavbar from '../../components/DashboardNavbar.vue';
 import Sidebar from '../../components/Sidebar.vue';
 import Alert from '../../components/AlertMessage.vue';
@@ -25,9 +26,7 @@ export default {
     Alert,
   },
   computed: {
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
+    ...mapGetters(['isLoading']),
   },
 };
 </script>

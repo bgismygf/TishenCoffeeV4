@@ -22,14 +22,13 @@ export default new Vuex.Store({
     },
     getItem(context, status) {
       context.commit('SELECT_SWITCH', status);
-      context.dispatch('getProducts');
     },
     getProducts(context) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_ZACPATH}/products/all`;
       context.commit('LOADING', true);
       axios.get(api).then((response) => {
         context.commit('LOADING', false);
-        context.commit('FILTERED_DATA', response.data.products);
+        context.commit('GIT_PROSUCTS_DATA', response.data.products);
       });
     },
     addtoCart(context, { id, qty = 1 }) {
@@ -109,12 +108,8 @@ export default new Vuex.Store({
     LOADING(state, status) {
       state.isLoading = status;
     },
-    FILTERED_DATA(state, payload) {
-      if (state.select === '全部菜單') {
-        state.products = payload;
-      } else {
-        state.products = payload.filter((item) => item.category === state.select);
-      }
+    GIT_PROSUCTS_DATA(state, payload) {
+      state.products = payload;
     },
     CART(state, payload) {
       state.cart = payload;
@@ -159,6 +154,29 @@ export default new Vuex.Store({
     },
     SELECT_SWITCH(state, payload) {
       state.select = payload;
+    },
+  },
+  getters: {
+    filteredData(state) {
+      return state.products;
+    },
+    select(state) {
+      return state.select;
+    },
+    favoriteData(state) {
+      return state.favoriteData;
+    },
+    product(state) {
+      return state.product;
+    },
+    cart(state) {
+      return state.cart;
+    },
+    isLoading(state) {
+      return state.isLoading;
+    },
+    products(state) {
+      return state.products;
     },
   },
 });
