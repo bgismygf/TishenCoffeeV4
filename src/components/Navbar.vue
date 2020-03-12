@@ -189,6 +189,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   data() {
     return {};
@@ -202,20 +204,11 @@ export default {
         this.$router.push('/product_list');
       }
     },
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
     removeCartItem(id) {
       this.$store.dispatch('removeCartItem', id);
     },
-    getFavoriteData() {
-      this.$store.dispatch('getFavoriteData');
-    },
     removeFavorite(item) {
       this.$store.dispatch('removeFavorite', item);
-    },
-    removeAllFavorite() {
-      this.$store.dispatch('removeAllFavorite');
     },
     moreContent(productId, isEnabled) {
       if (isEnabled === 0) {
@@ -230,17 +223,10 @@ export default {
     addtoCart(id, qty = 1) {
       this.$store.dispatch('addtoCart', { id, qty });
     },
+    ...mapActions(['getCart', 'getFavoriteData', 'removeAllFavorite']),
   },
   computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
-    cartLength() {
-      return this.$store.state.cartLength;
-    },
-    favoriteData() {
-      return this.$store.state.favoriteData;
-    },
+    ...mapGetters(['cart', 'cartLength', 'favoriteData']),
   },
   created() {
     this.getCart();

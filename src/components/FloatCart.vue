@@ -56,26 +56,20 @@
 
 <script>
 import $ from 'jquery';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data() {
     return {};
   },
   methods: {
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
     removeCartItem(id) {
       this.$store.dispatch('removeCartItem', id);
     },
+    ...mapActions(['getCart']),
   },
   computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
-    cartLength() {
-      return this.$store.state.cartLength;
-    },
+    ...mapGetters(['cart', 'cartLength']),
   },
   mounted() {
     $(window).scroll(() => {
