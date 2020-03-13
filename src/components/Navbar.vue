@@ -85,7 +85,7 @@
             </li>
 <!-- 我的最愛 -->
             <li class="nav-item mr-lg-3">
-              <div class="dropdown position-absolutes">
+              <div class="dropdown">
                 <a class="nav-link nav_item_style my-1 my-lg-0" id="favorite"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="nav_badge_block">
@@ -98,8 +98,7 @@
                   <span class="ml-2 d-lg-none">我的最愛</span>
                 </a>
 <!-- 我的最愛選單內容 -->
-                <div class="dropdown-menu
-                  dropdown-menu-right nav_favorite_block_xs-md"
+                <div class="dropdown-menu dropdown-menu-right nav_favorite_block_xs-md"
                   aria-labelledby="favorite" style="min-width:400px;">
                   <div class="px-3 py-2">
                     <h5 class="text-center">我的最愛</h5>
@@ -234,3 +233,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.navbar-nav .dropdown-menu {
+  position: absolute;
+}
+</style>
