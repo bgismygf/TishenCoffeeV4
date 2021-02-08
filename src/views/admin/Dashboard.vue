@@ -28,6 +28,10 @@ export default {
   computed: {
     ...mapGetters(['isLoading']),
   },
+  created() {
+    const myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)tishencoffeecookie\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    this.$http.defaults.headers.common.Authorization = myCookie;
+  },
 };
 </script>
 <style lang="scss" scoped>

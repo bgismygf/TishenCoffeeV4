@@ -43,6 +43,9 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/admin/signin`;
       vm.$http.post(api, vm.user).then((response) => {
         if (response.data.success) {
+          const { token } = response.data;
+          const { expired } = response.data;
+          document.cookie = `tishencoffeecookie=${token}; expires=${new Date(expired)};`;
           vm.$router.push('/dashboard/products_manage');
         } else {
           vm.user.username = '';
